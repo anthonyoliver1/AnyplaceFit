@@ -1,0 +1,7 @@
+{
+  "name": "anyplaceFit",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
