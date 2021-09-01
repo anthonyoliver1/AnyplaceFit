@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AppHomeComponent } from './components/app-home/app-home.component';
+import { CardsComponent } from './components/cards/cards.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
+import { NewAccountComponent } from './components/new-account/new-account.component';
 
 const routes: Routes = [
   {
@@ -11,6 +16,12 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  { path: 'login', component: LoginComponent },
+  { path: 'header', component: HeaderComponent },
+  { path: 'newAccount', component: NewAccountComponent },
+  { path: 'app-home', component: AppHomeComponent },
+  { path: 'cards', component: CardsComponent },
+
 ];
 
 @NgModule({
