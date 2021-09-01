@@ -1,0 +1,46 @@
+
+.content{
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+}
+
+.box-login{
+    display: flex;
+    align-items: center;
+    align-content: flex-end;
+    flex-wrap: wrap;
+    width: 75vw;
+    height: 80vh;
+}
+
+img{
+    width: 100%;
+    height: 50%;
+}
+
+.btn-login{
+    display: flex;
+    margin-bottom: 5%;
+    width: 100%;
+    ::ng-deep{
+        background-color:#f09841;
+    }
+
+}
+
+.input-login{
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    &:hover{
+        border-color: orange;
+    }
+}
+
+.items-login{
+    width: 100%;
+}
+

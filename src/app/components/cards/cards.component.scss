@@ -1,0 +1,32 @@
+.card-position{
+  background-color: gray;
+}
+
+.cards{
+  width: 100%;
+  margin: 5%;
+  border-radius: 2%;
+  background-color: #f09841;
+  color: black;
+}
+  
+img{
+  width: 100%;
+}
+
+.infos-card{
+  color: black;
+  display: flex;
+  align-items: center;
+
+  img{
+    width: 10%;
+  }
+  
+  .infos-works{
+    font-weight: bold;
+    color: black;
+    padding-left: 8px;
+    font-size: 16px;
+  }
+}
