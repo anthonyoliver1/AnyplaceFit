@@ -1,0 +1,73 @@
+.perfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-user{
+    margin-top: 20px;
+    width: 50%;
+    height: 50%;
+}
+
+.name-user{
+    font-size: 25px;
+    font-weight: bold;
+    
+}
+
+.file{
+ text-align: center;
+
+    /* Esconde o input */
+    input[type='file'] {
+        display: none
+    }
+  
+    /* Aparência que terá o seletor de arquivo */
+    label {
+        color:#f09841;
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+.input-profile{
+    display: flex;
+    margin: 40px 10px 10px;
+}
+
+.input-login{
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding-left: 10px;
+    &:hover{
+        border-color: orange;
+    }
+}
+
+.input-email{
+    margin: 10px;
+}
+
+.btn{    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 25vh;
+    text-align: center;
+    margin: 15px;
+}
+
+
+.save-btn{
+    display: flex;
+    margin-bottom: 5%;
+    width: 100%;
+    border-radius: 15px;
+    ::ng-deep{
+        background-color:#f09841;
+    }
+
+}

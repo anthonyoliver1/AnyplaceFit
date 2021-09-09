@@ -1,0 +1,35 @@
+<app-header></app-header>
+
+<ion-content>
+  <div class="perfil">
+    <ion-avatar class="image-user">
+      <img src="{{imageUser}}">
+    </ion-avatar>
+    <div class="name-user">
+      <p>{{name + " " + surname}}</p>
+    </div>
+  </div>
+
+  <div class="file">
+    <label for='file' (click)="file($event)">Alterar foto de perfil</label>
+    <input id='file' type='file' accept="image/*" (change)="fileChange($event)">
+  </div>
+  
+  <div [formGroup]="_fb">
+    <div class="input-profile">
+      <ion-input class="input-login" formControlName="nameUser" style="margin-right: 10px;" placeholder="{{name}}"></ion-input>
+      <ion-input class="input-login" formControlName="surnameUser" placeholder="{{surname}}"></ion-input>
+    </div>
+    
+    <div class="input-email">
+      <ion-input class="input-login" formControlName="emailUser" placeholder="{{email}}"></ion-input>
+    </div>
+  </div>
+  
+  <div class="btn">
+    <ion-button color="anyPlace" (click)="saveProfile()" class="save-btn">Atualizar</ion-button>
+    <ion-button color="anyPlace" (click)="logout()" class="save-btn">Sair</ion-button>
+  </div>
+</ion-content>
+
+<app-tabs></app-tabs>
