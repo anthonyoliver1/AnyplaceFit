@@ -5,6 +5,7 @@ import { CardsComponent } from './components/cards/cards.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { NewAccountComponent } from './components/new-account/new-account.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'newAccount', component: NewAccountComponent },
   { path: 'app-home', component: AppHomeComponent },
   { path: 'cards', component: CardsComponent },
+  { path: 'perfil', component: PerfilComponent },
 
 ];
 

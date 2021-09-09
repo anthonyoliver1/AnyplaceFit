@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { cpf } from 'cpf-cnpj-validator'; 
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
   nextBtn: boolean
   finalBtn: boolean
 
-  constructor(private formBuilder: FormBuilder, private router: Router, public toastController: ToastController) {
+  constructor(private formBuilder: FormBuilder, private router: Router, public toastController: ToastController, private usersService: UsersService) {
     this.dataFormLogin = this.formBuilder.group({
       cpf:[null, [Validators.required, Validators.maxLength(14)]],
       name:[null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
@@ -75,11 +76,11 @@ export class LoginComponent implements OnInit {
 
     if(emailLogin != null && senhaLogin != null){
       this.dataLogin.push(emailLogin, senhaLogin)
-      
       this.showUserInfo = false
       this.nextInfo = false
       this.userLogin = true
     }
+    this.usersService.dataUserInfo = this.dataFormLogin
   }
 
   newAccount(){

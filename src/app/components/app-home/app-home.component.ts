@@ -22,7 +22,7 @@ export class AppHomeComponent implements OnInit {
     {name: "Marcos Freitas",    area:'Funcional',           local: "São Paulo", image: "../../../assets/images/prof_marcos.png"   },
     {name: "Maria Eduarda",     area:'Pedalada',            local: "São Paulo", image: "../../../assets/images/prof_maria.png"    },
     {name: "Victoria Dias",     area:'Pilates',             local: "São Paulo", image: "../../../assets/images/prof_victoria.png" },
-    {name: "Monique Oliveira",  area:'Musculação',          local: "São Paulo", image: "../../../assets/images/prof_victoria.png" },
+    {name: "Monique Oliveira",  area:'Musculação',          local: "São Paulo", image: "../../../assets/images/prof_monique.png" },
   ]
 
   dataPersonal: any = this.listPersonals
@@ -35,16 +35,6 @@ export class AppHomeComponent implements OnInit {
     let dataInput = e.target.value.toUpperCase()
     this.dataPersonal = this.listPersonals.filter(i => i.name.toUpperCase().includes(dataInput))
     this.dataPersonal.length <= 0 ? this.noneFound = true : this.noneFound = false
-  }
-
-  pageHome(){
-    console.log('chamei', this.sle)
-    this.router.navigate(['/app-home'])
-  }
-  
-  mudar(){
-    this.sle = false
-
   }
 
 }

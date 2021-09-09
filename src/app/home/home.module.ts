@@ -11,6 +11,8 @@ import { NewAccountComponent } from '../components/new-account/new-account.compo
 import { BrMaskerModule } from 'br-mask';
 import { CardsComponent } from '../components/cards/cards.component';
 import { AppHomeComponent } from '../components/app-home/app-home.component';
+import { PerfilComponent } from '../components/perfil/perfil.component';
+import { TabsComponent } from '../components/tabs/tabs.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { AppHomeComponent } from '../components/app-home/app-home.component';
     LoginComponent,
     NewAccountComponent,
     CardsComponent,
-    AppHomeComponent
+    AppHomeComponent,
+    PerfilComponent,
+    TabsComponent,
   ],
 })
 export class HomePageModule {}
