@@ -1,0 +1,36 @@
+<app-header></app-header>
+<div *ngIf="dataPersonal" class="content">
+  <div class="personal-inf">
+    <img class="img" [src]="dataPersonal.image" alt="Foto do personal" width="100%" height="100%">
+    <div class="specs">
+      <div class="name">
+        <img *ngIf="dataPersonal.verify" src="../../../assets/icon/verify.png" alt="Ícone verificado" class="icone" width="12px">
+        <h2>{{dataPersonal.name}}</h2>
+      </div>
+      <h6>{{sex}} de {{dataPersonal.area}}</h6>
+      <h6>{{dataPersonal.age}} anos</h6>
+      <h6>{{dataPersonal.local}}</h6>
+    </div>
+  </div>
+  <div class="description">
+    <span class="text">{{dataPersonal.description}}</span>
+  </div>
+  <div class="contacts">
+    <div class="infs">
+      <img src="../../../assets/icon/email-icon.png" alt="Ícone e-mail">
+      <span>{{dataPersonal.email}}</span>
+    </div>
+    <div class="number-contact">
+      <div class="infs">
+        <img src="../../../assets/icon/iconTel.png" alt="Ícone Telefone">
+        <span>{{dataPersonal.number}}</span>
+      </div>
+      <div class="infs whatsApp" *ngIf="dataPersonal.isWhatsApp" (click)="openWhatsApp(dataPersonal.number)">
+        <img src="../../../assets/icon/iconZap.png" alt="Ícone WhatsApp">
+        <span *ngIf="dataPersonal.isWhatsApp">{{dataPersonal.number}}</span>
+        <em class="warning">(Clique para abrir o whatsApp)</em>
+      </div>
+    </div>
+  </div>
+</div>
+<app-tabs></app-tabs>

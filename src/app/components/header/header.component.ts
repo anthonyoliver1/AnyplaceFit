@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {}
+  public enableGoBack: Boolean = false
+
+  constructor(private route: Router) {
+    if (this.route.url !== "/app-home") this.enableGoBack = true
+  }
+
+  ngOnInit() { }
+
+  backToMenu(){
+    this.route.navigate(['/app-home'])
+  }
 
 }

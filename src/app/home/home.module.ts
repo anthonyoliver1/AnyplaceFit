@@ -1,3 +1,4 @@
+import { PersonalPageComponent } from './../components/personal-page/personal-page.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
@@ -22,17 +23,18 @@ import { TabsComponent } from '../components/tabs/tabs.component';
     IonicModule,
     HomePageRoutingModule,
     ReactiveFormsModule,
-    BrMaskerModule
+    BrMaskerModule,
+    CardsComponent,
+    HeaderComponent,
+    TabsComponent,
+    PersonalPageComponent
   ],
   declarations: [
     HomePage,
-    HeaderComponent,
     LoginComponent,
     NewAccountComponent,
-    CardsComponent,
     AppHomeComponent,
     PerfilComponent,
-    TabsComponent,
   ],
 })
 export class HomePageModule {}

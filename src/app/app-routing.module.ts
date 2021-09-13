@@ -1,3 +1,4 @@
+import { PersonalPageComponent } from './components/personal-page/personal-page.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AppHomeComponent } from './components/app-home/app-home.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'app-home', component: AppHomeComponent },
   { path: 'cards', component: CardsComponent },
   { path: 'perfil', component: PerfilComponent },
+  { path: 'personal', component: PersonalPageComponent },
 
 ];
 

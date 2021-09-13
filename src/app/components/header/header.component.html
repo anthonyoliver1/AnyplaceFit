@@ -1,7 +1,8 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title class="principal">
-      <img id="logo" src="../../../assets/images/logo_anyplacefit_white.svg">
+<ion-header translucent="true">
+  <ion-toolbar class="principal">
+    <img *ngIf="enableGoBack" src="../../../assets/icon/left-arrow.png" alt="Ícone para voltar a página inicial" width="20px" (click)="backToMenu()">
+    <ion-title >
+      <img id="logo" src="../../../assets/images/logo_anyplacefit_white.svg" width="180px">
     </ion-title>
   </ion-toolbar>
 </ion-header>

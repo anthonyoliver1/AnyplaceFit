@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { UsersService } from './../users.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -9,8 +11,14 @@ export class CardsComponent implements OnInit {
 
   @Input() listPersonals
 
-  constructor() { }
+  constructor(private service: UsersService, private route: Router) { }
 
   ngOnInit() { }
+  
+  goToPersonalPage(data){
+    this.service.handlerDataPersonal.next(data)
+    this.route.navigate(['/personal'])
+  }
+
 
 }

@@ -1,4 +1,9 @@
 .principal{
-    background-color: gray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F1F1F1!important;
+    width: 100%;
     height: 100%;
 }

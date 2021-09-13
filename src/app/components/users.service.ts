@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,9 @@ export class UsersService {
   public _storage: Storage | null = null;
   public data: any = []
   public dataUserInfo: any = []
+  public dataPersonal: any = null
+
+  public handlerDataPersonal: BehaviorSubject<any> = new BehaviorSubject(this.dataPersonal)
 
   constructor(private storage: Storage) {
     this.init();

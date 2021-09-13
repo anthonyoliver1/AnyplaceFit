@@ -53,20 +53,19 @@ export class LoginComponent implements OnInit {
   }
   
   login(){
-    console.log('INDEX', this.dataLogin)
-    // this.router.navigate(["/app-home"])
+    this.router.navigate(["/app-home"])
 
-    if(this.dataLogin.length){
-      if((this.dataLogin[0] != this.dataFormLogin.value.email) || (this.dataLogin[1] != this.dataFormLogin.value.passwordLogin)){
-        this.toast('Email ou Senha incorretos')
-      }
+    // if(this.dataLogin.length){
+    //   if((this.dataLogin[0] != this.dataFormLogin.value.email) || (this.dataLogin[1] != this.dataFormLogin.value.passwordLogin)){
+    //     this.toast('Email ou Senha incorretos')
+    //   }
       
-      if((this.dataLogin[0] == this.dataFormLogin.value.email) && (this.dataLogin && this.dataLogin[1] == this.dataFormLogin.value.passwordLogin)){
-        this.router.navigate(["/app-home"])
-      }
-    }else{
-      this.toast('É necessário o cadastro')
-    }
+    //   if((this.dataLogin[0] == this.dataFormLogin.value.email) && (this.dataLogin && this.dataLogin[1] == this.dataFormLogin.value.passwordLogin)){
+    //     this.router.navigate(["/app-home"])
+    //   }
+    // }else{
+    //   this.toast('É necessário o cadastro')
+    // }
 
   }
 
