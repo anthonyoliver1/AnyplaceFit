@@ -9,16 +9,7 @@ import { NewAccountComponent } from './components/new-account/new-account.compon
 import { PerfilComponent } from './components/perfil/perfil.component';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
   { path: 'header', component: HeaderComponent },
   { path: 'newAccount', component: NewAccountComponent },
   { path: 'app-home', component: AppHomeComponent },

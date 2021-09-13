@@ -7,6 +7,7 @@ import { CardsComponent } from './components/cards/cards.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -23,7 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PerfilComponent,
     AppHomeComponent,
     TabsComponent,
-    PersonalPageComponent
+    PersonalPageComponent,
+    LoginComponent
   ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(), FormsModule, ReactiveFormsModule],
