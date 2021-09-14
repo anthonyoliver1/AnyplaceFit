@@ -130,7 +130,7 @@ export class LoginComponent implements OnInit {
     this.invalidSurname = (this.dataFormLogin.controls['surname'].invalid && this.dataFormLogin.controls['surname'].value)
     this.invalidPassword = (this.dataFormLogin.controls['password'].invalid && this.dataFormLogin.controls['password'].value)
     this.invalidCpf = cpf.isValid(cpfUser)
-    this.verifyCpf = cpfUser.length <= 14
+    this.verifyCpf = cpfUser?.length <= 14
   }
 
 }
