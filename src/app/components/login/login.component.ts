@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { cpf } from 'cpf-cnpj-validator'; 
+import { cpf } from 'cpf-cnpj-validator';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -27,22 +27,31 @@ export class LoginComponent implements OnInit {
   nextBtn: boolean
   finalBtn: boolean
 
-  constructor(private formBuilder: FormBuilder, private router: Router, public toastController: ToastController, private usersService: UsersService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    public toastController: ToastController,
+    private usersService: UsersService
+  ) {
     this.dataFormLogin = this.formBuilder.group({
-      cpf:[null, [Validators.required, Validators.maxLength(14)]],
-      name:[null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      email:[null, [Validators.required, Validators.email]],
-      gender:[null,[Validators.required]],
-      surname:[null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      password:[null, [Validators.required]],
-      passwordLogin:[null, [Validators.required]],
-      confirmPassword:[null, [Validators.required]],
+      cpf: [null, [Validators.required, Validators.maxLength(14)]],
+      name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      email: [null, [Validators.required, Validators.email]],
+      gender: [null, [Validators.required]],
+      surname: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      password: [null, [Validators.required]],
+      passwordLogin: [null, [Validators.required]],
+      confirmPassword: [null, [Validators.required]],
     })
   }
 
-  ngOnInit() {}
-  
-  async toast(msg){
+  ngOnInit() { }
+
+  get formLogin() {
+    return this.dataFormLogin.controls
+  }
+
+  async toast(msg) {
     const toast = await this.toastController.create({
       color: 'dark', // dark fica branco e light fica preto
       duration: 2000,
@@ -51,26 +60,22 @@ export class LoginComponent implements OnInit {
 
     await toast.present();
   }
-  
-  login(){
-    if(this.dataLogin.length){
-      if((this.dataLogin[0] != this.dataFormLogin.value.email) || (this.dataLogin[1] != this.dataFormLogin.value.passwordLogin)){
-        this.toast('Email ou Senha incorretos')
-      }
-      
-      if((this.dataLogin[0] == this.dataFormLogin.value.email) && (this.dataLogin && this.dataLogin[1] == this.dataFormLogin.value.passwordLogin)){
-        this.router.navigate(["/app-home"])
-      }
-    }else{
-      this.toast('É necessário o cadastro')
+
+  async login() {
+    const email = this.formLogin["email"].value
+    const password = this.formLogin["passwordLogin"].value
+    const response = await this.usersService.login(email, password)
+
+    if(response) {
+      this.router.navigate(["/app-home"])
     }
   }
 
-  register(){
+  register() {
     let emailLogin = this.dataFormLogin.value.email
     let senhaLogin = this.dataFormLogin.value.confirmPassword
 
-    if(emailLogin != null && senhaLogin != null){
+    if (emailLogin && senhaLogin) {
       this.dataLogin.push(emailLogin, senhaLogin)
       this.showUserInfo = false
       this.nextInfo = false
@@ -79,7 +84,11 @@ export class LoginComponent implements OnInit {
     this.usersService.dataUserInfo = this.dataFormLogin
   }
 
-  newAccount(){
+  auth() {
+    this.usersService.getAuthentication()
+  }
+
+  newAccount() {
     this.showUserInfo = true
     this.userLogin = false
     this.nextInfo = false
@@ -91,39 +100,39 @@ export class LoginComponent implements OnInit {
   }
 
   priviousStep() {
-    if(this.showUserInfo){
+    if (this.showUserInfo) {
       this.userLogin = true
       this.showUserInfo = false
       this.nextInfo = false
     }
 
-    if(!this.showUserInfo && this.nextInfo){
+    if (!this.showUserInfo && this.nextInfo) {
       this.nextInfo = false
       this.showUserInfo = true
     }
   }
 
-  optionsFn(e){
+  optionsFn(e) {
     this.dataFormLogin.gender = e.detail.value
     e.detail.value == 'm' || e.detail.value == 'f' ? this.nextBtn = true : this.nextBtn = false
   }
 
-  registerVerify(){
+  registerVerify() {
     let email = this.dataFormLogin.controls['email'].valid
-    let password = this.dataFormLogin.value.password 
+    let password = this.dataFormLogin.value.password
     let confirmPassword = this.dataFormLogin.value.confirmPassword
-    
-    if(email && password != null || confirmPassword != null){
+
+    if (email && password != null || confirmPassword != null) {
       this.finalBtn = false
       if (email && password == confirmPassword) {
         this.finalBtn = true
       }
-    }else{
+    } else {
       this.finalBtn = false
     }
   }
 
-  validateNewAccount(){
+  validateNewAccount() {
     let cpfUser = this.dataFormLogin.controls['cpf'].value
     this.invalidEmail = (this.dataFormLogin.controls['email'].invalid && this.dataFormLogin.controls['email'].value)
     this.invalidName = (this.dataFormLogin.controls['name'].invalid && this.dataFormLogin.controls['name'].value)

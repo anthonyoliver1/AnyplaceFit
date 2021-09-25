@@ -16,7 +16,6 @@ const routes: Routes = [
   { path: 'cards', component: CardsComponent },
   { path: 'perfil', component: PerfilComponent },
   { path: 'personal', component: PersonalPageComponent },
-
 ];
 
 @NgModule({
