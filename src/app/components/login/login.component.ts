@@ -82,6 +82,7 @@ export class LoginComponent implements OnInit {
       this.userLogin = true
     }
     this.usersService.dataUserInfo = this.dataFormLogin
+    this.usersService.createAccount(emailLogin, senhaLogin)
   }
 
   auth() {
