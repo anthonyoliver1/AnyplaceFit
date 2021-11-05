@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, set, get, ref, child } from "firebase/database";
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,7 @@ export class UsersService {
   public data: any = []
   public dataUserInfo: any = []
   public dataPersonal: any = null
+  public database = getDatabase();
 
   public handlerDataPersonal: BehaviorSubject<any> = new BehaviorSubject(this.dataPersonal)
 
@@ -21,6 +23,36 @@ export class UsersService {
   async init() {
     const storage = await this.storage.create();
     this._storage = storage;
+  }
+
+  public writeUserData(cpfUser, name, surname, email) {
+    localStorage.setItem('CPF', cpfUser)
+    localStorage.setItem('NAME', name)
+    localStorage.setItem('SURNAME', surname)
+    localStorage.setItem('EMAIL', email)
+    const db = this.database;
+    set(ref(db, 'users/' + cpfUser), {
+      username: name,
+      surname: surname,
+      email: email,
+      cpf: cpfUser
+    });
+  }
+
+  public getUserData(a) {
+    let cpfUser = localStorage.getItem('CPF')
+    
+    const dbRef = ref(this.database);
+    get(child(dbRef, `users/${cpfUser}`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        this.dataUserInfo = snapshot.val()
+        console.log(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
   }
 
   public set(key: any, value: any) {
@@ -48,7 +80,7 @@ export class UsersService {
         // const errorCode = error.code;
         // const errorMessage = error.message;
       });
-      
+
     console.log("response", response);
     return response
   }
@@ -73,6 +105,7 @@ export class UsersService {
 
   public getAuthentication() {
     const auth = getAuth();
+    this.dataUserInfo = auth.currentUser.email;
     console.log(auth.currentUser);
     console.log(auth);
   }

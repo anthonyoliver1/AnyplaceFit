@@ -64,6 +64,12 @@ export class LoginComponent implements OnInit {
   async login() {
     const email = this.formLogin["email"].value
     const password = this.formLogin["passwordLogin"].value
+    let cpfUser = this.formLogin["cpf"].value
+
+    if (cpfUser != null){
+      cpfUser = cpfUser.replace(/[^0-9]/g, "")
+    }
+
     const response = await this.usersService.login(email, password)
 
     if(response) {
@@ -72,11 +78,16 @@ export class LoginComponent implements OnInit {
       let message = 'Verifique o usuário e a senha'
       this.toast(message)
     }
+
+    this.usersService.getUserData(cpfUser)
   }
 
   register() {
     let emailLogin = this.dataFormLogin.value.email
     let senhaLogin = this.dataFormLogin.value.confirmPassword
+    let name = this.dataFormLogin.value.name
+    let surname = this.dataFormLogin.value.surname    
+    let cpfUser = this.formLogin["cpf"].value.replace(/[^0-9]/g, "")
 
     if (emailLogin && senhaLogin) {
       this.dataLogin.push(emailLogin, senhaLogin)
@@ -86,6 +97,7 @@ export class LoginComponent implements OnInit {
     }
     this.usersService.dataUserInfo = this.dataFormLogin
     this.usersService.createAccount(emailLogin, senhaLogin)
+    this.usersService.writeUserData(cpfUser, name, surname, emailLogin)
   }
 
   auth() {

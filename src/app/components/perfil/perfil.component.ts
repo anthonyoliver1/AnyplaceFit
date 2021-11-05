@@ -15,16 +15,18 @@ export class PerfilComponent implements OnInit {
   imageUser: string = "../../../assets/images/profile-icon.jpeg"
   value
   dataImage: any = []
-  name: string = ""
-  surname: string = ""
-  email: string = ""
+  name: string 
+  surname: string 
+  email: string 
+  cpf: string
   _fb: any = []
 
   constructor(private formBuilder: FormBuilder, private storage: Storage, private usersService: UsersService, private toastController: ToastController, private router: Router) { 
     this._fb = this.formBuilder.group({
       nameUser:[null,[Validators.minLength(2)]],
       surnameUser:[null,[Validators.minLength(2)]],
-      emailUser: [null,[Validators.minLength(2), Validators.email]]
+      emailUser: [null,[Validators.minLength(2), Validators.email]],
+      cpf: [null, [Validators.required, Validators.maxLength(14)]]
     })
   }
 
@@ -40,10 +42,14 @@ export class PerfilComponent implements OnInit {
   
 
   async ngOnInit() {
-    let data = this.usersService.dataUserInfo
-    this.name = data.value.name
-    this.surname = data.value.surname
-    this.email = data.value.email
+
+    setInterval(() => {
+      let data = this.usersService.dataUserInfo
+      this.name = data.username || localStorage.getItem('NAME')  
+      this.surname = data.surname || localStorage.getItem('SURNAME')
+      this.email = data.email || localStorage.getItem('EMAIL') 
+      this.cpf =  data.cpf || localStorage.getItem('CPF')
+    }, 1000);
   }
 
   file() {
