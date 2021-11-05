@@ -66,7 +66,7 @@ export class PerfilComponent implements OnInit {
   }
 
   logout(){
-    this.router.navigate(['/home'])
+    this.router.navigate(['/'])
   }
 
 }
