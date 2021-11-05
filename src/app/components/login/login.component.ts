@@ -68,6 +68,9 @@ export class LoginComponent implements OnInit {
 
     if(response) {
       this.router.navigate(["/app-home"])
+    } else {
+      let message = 'Verifique o usuário e a senha'
+      this.toast(message)
     }
   }
 
