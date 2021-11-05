@@ -117,8 +117,8 @@ export class LoginComponent implements OnInit {
   }
 
   optionsFn(e) {
-    this.dataFormLogin.gender = e.detail.value
-    e.detail.value == 'm' || e.detail.value == 'f' ? this.nextBtn = true : this.nextBtn = false
+    this.dataFormLogin.gender = e.detail.value;
+    (e.detail.value == 'm' || e.detail.value == 'f' || e.detail.value == 'o') ? this.nextBtn = true : this.nextBtn = false
   }
 
   registerVerify() {
