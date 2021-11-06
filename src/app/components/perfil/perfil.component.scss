@@ -41,7 +41,7 @@
     color: white;
     border: 1px solid white;
     border-radius: 10px;
-    padding-left: 10px;
+    padding-left: 10px !important;
     &:hover{
         border-color: orange;
     }
@@ -70,4 +70,8 @@
         background-color:#f09841;
     }
 
+}
+
+::ng-deep.native-input[disabled].sc-ion-input-md {
+    opacity: 1;
 }

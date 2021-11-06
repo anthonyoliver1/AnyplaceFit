@@ -25,8 +25,8 @@ export class UsersService {
     this._storage = storage;
   }
 
-  public writeUserData(cpfUser, name, surname, email) {
-    localStorage.setItem('CPF', cpfUser)
+  public writeUserData(cpfUser, name, surname, email, cpfUserNoFomatter) {
+    localStorage.setItem('CPF', cpfUserNoFomatter)
     localStorage.setItem('NAME', name)
     localStorage.setItem('SURNAME', surname)
     localStorage.setItem('EMAIL', email)

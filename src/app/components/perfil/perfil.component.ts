@@ -21,6 +21,8 @@ export class PerfilComponent implements OnInit {
   cpf: string
   _fb: any = []
 
+  interval
+
   constructor(private formBuilder: FormBuilder, private storage: Storage, private usersService: UsersService, private toastController: ToastController, private router: Router) { 
     this._fb = this.formBuilder.group({
       nameUser:[null,[Validators.minLength(2)]],
@@ -42,14 +44,17 @@ export class PerfilComponent implements OnInit {
   
 
   async ngOnInit() {
-
-    setInterval(() => {
+   this.interval = setInterval(() => {
       let data = this.usersService.dataUserInfo
       this.name = data.username || localStorage.getItem('NAME')  
       this.surname = data.surname || localStorage.getItem('SURNAME')
       this.email = data.email || localStorage.getItem('EMAIL') 
       this.cpf =  data.cpf || localStorage.getItem('CPF')
     }, 1000);
+  }
+
+  ngOnDestroy(){
+    clearInterval(this.interval)
   }
 
   file() {

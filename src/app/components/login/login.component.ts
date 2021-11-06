@@ -88,6 +88,8 @@ export class LoginComponent implements OnInit {
     let name = this.dataFormLogin.value.name
     let surname = this.dataFormLogin.value.surname    
     let cpfUser = this.formLogin["cpf"].value.replace(/[^0-9]/g, "")
+    let cpfUserNoFomatter = this.formLogin["cpf"].value
+
 
     if (emailLogin && senhaLogin) {
       this.dataLogin.push(emailLogin, senhaLogin)
@@ -97,7 +99,7 @@ export class LoginComponent implements OnInit {
     }
     this.usersService.dataUserInfo = this.dataFormLogin
     this.usersService.createAccount(emailLogin, senhaLogin)
-    this.usersService.writeUserData(cpfUser, name, surname, emailLogin)
+    this.usersService.writeUserData(cpfUser, name, surname, emailLogin, cpfUserNoFomatter)
   }
 
   auth() {
