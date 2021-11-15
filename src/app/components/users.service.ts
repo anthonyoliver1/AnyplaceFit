@@ -39,14 +39,13 @@ export class UsersService {
     });
   }
 
-  public getUserData(a) {
-    let cpfUser = localStorage.getItem('CPF')
-    
+  public getUserData() {
+    let cpfUser = localStorage.getItem('CPF').replace(/[^0-9]/g, "")
     const dbRef = ref(this.database);
     get(child(dbRef, `users/${cpfUser}`)).then((snapshot) => {
       if (snapshot.exists()) {
         this.dataUserInfo = snapshot.val()
-        console.log(snapshot.val());
+        // console.log(snapshot.val());
       } else {
         console.log("No data available");
       }

@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
       this.toast(message)
     }
 
-    this.usersService.getUserData(cpfUser)
+    this.usersService.getUserData()
   }
 
   register() {

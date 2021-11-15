@@ -15,24 +15,24 @@ export class PerfilComponent implements OnInit {
   imageUser: string = "../../../assets/images/profile-icon.jpeg"
   value
   dataImage: any = []
-  name: string 
-  surname: string 
-  email: string 
+  name: string
+  surname: string
+  email: string
   cpf: string
   _fb: any = []
 
   interval
 
-  constructor(private formBuilder: FormBuilder, private storage: Storage, private usersService: UsersService, private toastController: ToastController, private router: Router) { 
+  constructor(private formBuilder: FormBuilder, private storage: Storage, private usersService: UsersService, private toastController: ToastController, private router: Router) {
     this._fb = this.formBuilder.group({
-      nameUser:[null,[Validators.minLength(2)]],
-      surnameUser:[null,[Validators.minLength(2)]],
-      emailUser: [null,[Validators.minLength(2), Validators.email]],
+      nameUser: [null, [Validators.minLength(2)]],
+      surnameUser: [null, [Validators.minLength(2)]],
+      emailUser: [null, [Validators.minLength(2), Validators.email]],
       cpf: [null, [Validators.required, Validators.maxLength(14)]]
     })
   }
 
-  async toast(){
+  async toast() {
     const toast = await this.toastController.create({
       color: 'dark', // dark fica branco e light fica preto
       duration: 2000,
@@ -41,19 +41,19 @@ export class PerfilComponent implements OnInit {
 
     await toast.present();
   }
-  
 
   async ngOnInit() {
-   this.interval = setInterval(() => {
+    this.usersService.getUserData()
+    this.interval = setInterval(() => {
       let data = this.usersService.dataUserInfo
-      this.name = data.username || localStorage.getItem('NAME')  
+      this.name = data.username || localStorage.getItem('NAME')
       this.surname = data.surname || localStorage.getItem('SURNAME')
-      this.email = data.email || localStorage.getItem('EMAIL') 
-      this.cpf =  data.cpf || localStorage.getItem('CPF')
+      this.email = data.email || localStorage.getItem('EMAIL')
+      this.cpf = data.cpf || localStorage.getItem('CPF')
     }, 1000);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     clearInterval(this.interval)
   }
 
@@ -62,12 +62,12 @@ export class PerfilComponent implements OnInit {
     const inputFile = document.getElementById('file')
   };
 
-  fileChange(e){
+  fileChange(e) {
     /** Esta buscando o caminho da imagem */
     this.dataImage = e.srcElement.files[0].name
   }
 
-  saveProfile(){
+  saveProfile() {
     let data = this.usersService.dataUserInfo
     data.value.name = this._fb.value.nameUser
     data.value.surname = this._fb.value.surnameUser
@@ -76,7 +76,7 @@ export class PerfilComponent implements OnInit {
     this.toast()
   }
 
-  logout(){
+  logout() {
     this.router.navigate(['/'])
   }
 
