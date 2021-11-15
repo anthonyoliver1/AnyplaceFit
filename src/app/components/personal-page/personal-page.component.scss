@@ -11,6 +11,7 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    margin: 5% 0;
     
     .specs{
         color: #000000;
@@ -30,16 +31,11 @@
                 right: 0px;
                 top: 0px;
             }
-
         }
 
         h6{
-            margin: 4px 0px;
+            margin: 4px 10px;
         }
-        
-       
-      
-
     }
 
     .img{
@@ -53,11 +49,12 @@
 }
 
 .description{
-    padding: 4px;
+    padding: 10px;
     border: 1px solid orange;
     border-radius: 8px;
     box-sizing: border-box;
-    margin: 8px 0px;
+    margin:15px 0px;
+    text-align: justify;
 
     .text{
         font-size: 14px;
