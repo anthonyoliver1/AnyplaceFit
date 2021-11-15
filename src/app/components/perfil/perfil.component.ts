@@ -32,11 +32,11 @@ export class PerfilComponent implements OnInit {
     })
   }
 
-  async toast() {
+  async toast(msg) {
     const toast = await this.toastController.create({
       color: 'dark', // dark fica branco e light fica preto
       duration: 2000,
-      message: "Atualizado com Sucesso",
+      message: msg,
     });
 
     await toast.present();
@@ -69,11 +69,15 @@ export class PerfilComponent implements OnInit {
 
   saveProfile() {
     let data = this.usersService.dataUserInfo
-    data.value.name = this._fb.value.nameUser
-    data.value.surname = this._fb.value.surnameUser
-    data.value.email = this._fb.value.emailUser
-
-    this.toast()
+    try {
+      data.username = this._fb.value.nameUser
+      data.surname = this._fb.value.surnameUser
+      data.email = this._fb.value.emailUser
+      this.toast('Atualizado com Sucesso!')
+    } catch (error) {
+      console.error(error)
+      this.toast('Não foi possível atualizar.')
+    }
   }
 
   logout() {
