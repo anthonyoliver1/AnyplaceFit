@@ -1,3 +1,5 @@
+@import "../../../theme/variables.scss";
+
 .perfil{
     display: flex;
     flex-direction: column;
@@ -17,7 +19,7 @@
 }
 
 .file{
- text-align: center;
+    text-align: center;
 
     /* Esconde o input */
     input[type='file'] {
@@ -26,7 +28,7 @@
   
     /* Aparência que terá o seletor de arquivo */
     label {
-        color:#f09841;
+        color: $main-orange;
         font-size: 20px;
         font-weight: bold;
     }
@@ -38,12 +40,14 @@
 }
 
 .input-login{
-    color: white;
-    border: 1px solid white;
+    color: $dark-blue!important;
+    border: 1px solid $main-white;
     border-radius: 10px;
     padding-left: 10px !important;
+    border: 1px solid $main-orange;
+
     &:hover{
-        border-color: orange;
+        border-color: $main-orange;
     }
 }
 
@@ -66,8 +70,11 @@
     margin-bottom: 5%;
     width: 100%;
     border-radius: 15px;
+
     ::ng-deep{
-        background-color:#f09841;
+        background-color: $main-orange;
+        color: $dark-blue;
+        font-family: $FontBold;
     }
 
 }

@@ -3,71 +3,76 @@
     <div class="content">
       <div class="box-login">
         <div class="container-image">
-          <img src="../../../assets/images/logo_anyplacefit_white.svg">
+          <img src="../../../assets/images/logo_AnyPlaceFit.svg">
         </div>
+
         <form [formGroup]="dataFormLogin" style="width: 100%;" (keyup)="validateNewAccount($event)">
+          
           <div *ngIf="userLogin" class="items-login">
 
             <div class="space-input">
-              <ion-input formControlName="email" type="email" class="input-login" placeholder="E-mail"
+              <ion-input 
+                formControlName="email" 
+                type="email" 
+                class="input-login" 
+                placeholder="E-mail"
                 [ngClass]="{'invalid' : dataFormLogin.controls['email'].invalid && dataFormLogin.controls['email'].value}">
               </ion-input>
-
-              <div *ngIf="invalidEmail"
-                [ngClass]="{'msg-invalid' : dataFormLogin.controls['email'].invalid && dataFormLogin.controls['email'].value}">
-                Verifique o email
-              </div>
             </div>
 
             <div class="space-input">
               <div class="space-input">
-                <ion-input formControlName="passwordLogin" type="password" class="input-login" placeholder="Senha">
+                <ion-input 
+                  formControlName="passwordLogin" 
+                  type="password" 
+                  class="input-login" 
+                  placeholder="Senha">
                 </ion-input>
               </div>
             </div>
 
-            <ion-button color="anyPlace" class="btn-login" (click)="login()">Acessar</ion-button>
+            <ion-button color="anyPlace" class="btn-login" (click)="login()" [disabled]="!dataFormLogin.controls['email'].value || !dataFormLogin.controls['passwordLogin'].value">Acessar</ion-button>
             <ion-button color="anyPlace" class="btn-login" (click)="newAccount()">Cadastre-se</ion-button>
           </div>
 
           <div *ngIf="showUserInfo" class="items-user">
-            <div class="space-input">
-              <ion-input type="text" formControlName="name" class="input-login" placeholder="Nome"
-                [ngClass]="{'invalid' : dataFormLogin.controls['name'].invalid && dataFormLogin.controls['name'].value}">
-              </ion-input>
 
-              <div *ngIf="invalidName"
-                [ngClass]="{'msg-invalid' : dataFormLogin.controls['name'].invalid && dataFormLogin.controls['name'].value}">
-                Verifique o nome
-              </div>
+            <div class="space-input">
+              <ion-input 
+                type="text" 
+                formControlName="name" 
+                class="input-login" 
+                placeholder="Nome"
+                [ngClass]="{'invalid' : dataFormLogin.controls['name'].invalid && dataFormLogin.controls['name'].touched}">
+              </ion-input>
             </div>
 
             <div class="space-input">
-              <ion-input type="text" formControlName="surname" class="input-login" placeholder="Sobrenome"
-                [ngClass]="{'invalid' : dataFormLogin.controls['surname'].invalid && dataFormLogin.controls['surname'].value}">
+              <ion-input 
+                type="text" 
+                formControlName="subName" 
+                class="input-login" 
+                placeholder="Sobrenome"
+                [ngClass]="{'invalid' : dataFormLogin.controls['subName'].invalid && dataFormLogin.controls['subName'].touched}">
               </ion-input>
-
-              <div *ngIf="invalidSurname"
-                [ngClass]="{'msg-invalid' : dataFormLogin.controls['surname'].invalid && dataFormLogin.controls['surname'].value}">
-                Verifique o sobrenome
-              </div>
             </div>
 
             <div class="space-input">
-              <ion-input type="tel" formControlName="cpf" class="input-login" placeholder="CPF"
-                [ngClass]="{'invalid' : !invalidCpf && verifyCpf}"
+              <ion-input 
+                type="tel" 
+                formControlName="cpf" 
+                class="input-login" 
+                placeholder="CPF"
+                (blur)="validyCPF($event)"
+                [ngClass]="{'invalid' : !invalidCpf && verifyCpf && dataFormLogin.controls['cpf'].touched}"
                 [brmasker]="{mask:'000.000.000-00', len:14, type: 'num'}">
               </ion-input>
-
-              <div *ngIf="!invalidCpf && verifyCpf" [ngClass]="{'msg-invalid' : !invalidCpf && verifyCpf}">
-                Verifique o CPF
-              </div>
             </div>
 
             <div class="space-input">
               <ion-item class="sexo">
                 <ion-label>Gênero</ion-label>
-                <ion-select (ionChange)="optionsFn($event)" placeholder="Selecione">
+                <ion-select (ionChange)="optionsFn($event)">
                   <ion-select-option value="f">Feminino</ion-select-option>
                   <ion-select-option value="m">Masculino</ion-select-option>
                   <ion-select-option value="o">Outro</ion-select-option>
@@ -75,35 +80,67 @@
               </ion-item>
             </div>
 
-            <ion-button *ngIf="nextBtn" type="button" color="anyPlace" class="btn-login" (click)="nextStep()">Próximo</ion-button>
-            <ion-button color="anyPlace" class="btn-login" (click)="priviousStep()">Voltar</ion-button>
+            <ion-button 
+              *ngIf="formLogin['gender'].valid && formLogin['cpf'].valid && formLogin['subName'].valid && formLogin['name'].valid" 
+              type="button" 
+              color="anyPlace" 
+              class="btn-login" 
+              (click)="nextStep()">
+              Próximo
+            </ion-button>
+            <ion-button 
+              color="anyPlace" 
+              class="btn-login" 
+              (click)="priviousStep()">
+              Voltar
+            </ion-button>
           </div>
 
           <div *ngIf="!showUserInfo && nextInfo" class="items-credential" (ionChange)=registerVerify()>
             <div class="space-input">
-              <ion-input type="email" formControlName="email" class="input-login" placeholder="E-mail"
-              [ngClass]="{'invalid' : dataFormLogin.controls['email'].invalid && dataFormLogin.controls['email'].value}"
+              <ion-input 
+                type="email" 
+                formControlName="email" 
+                class="input-login" 
+                placeholder="E-mail"
+                [ngClass]="{'invalid' : dataFormLogin.controls['email'].invalid && dataFormLogin.controls['email'].value}"
               ></ion-input>
-
-              <div *ngIf="invalidEmail"
-                [ngClass]="{'msg-invalid' : dataFormLogin.controls['email'].invalid && dataFormLogin.controls['email'].value}">
-                Verifique o email
-              </div>
             </div>
             
             <div class="space-input">
-              <ion-input type="password" formControlName="password" class="input-login" placeholder="Senha" value="">
+              <ion-input 
+                type="password" 
+                formControlName="password" 
+                class="input-login" 
+                placeholder="Senha" 
+                value="">
               </ion-input>
             </div>
 
             <div class="space-input">
-              <ion-input type="password" formControlName="confirmPassword" class="input-login"
-                placeholder="Confirmar Senha">
+              <ion-input 
+                type="password" 
+                formControlName="confirmPassword" 
+                class="input-login"
+                placeholder="Confirmar Senha"
+                >
               </ion-input>
             </div>
 
-            <ion-button *ngIf="finalBtn" color="anyPlace" class="btn-login" (click)="register()">Cadastrar</ion-button>
-            <ion-button color="anyPlace" class="btn-login" (click)="priviousStep()">Voltar</ion-button>
+            <ion-button 
+              *ngIf="formLogin['email'].valid && formLogin['password'].valid && formLogin['confirmPassword'].valid" 
+              color="anyPlace" 
+              class="btn-login" 
+              (click)="register()">
+              Cadastrar
+            </ion-button>
+
+            <ion-button 
+              color="anyPlace" 
+              class="btn-login" 
+              (click)="priviousStep()">
+              Voltar
+            </ion-button>
           </div>
         </form>
       </div>

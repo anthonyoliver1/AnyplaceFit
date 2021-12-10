@@ -42,10 +42,10 @@ export class UsersService {
   public getUserData() {
     let cpfUser = localStorage.getItem('CPF').replace(/[^0-9]/g, "")
     const dbRef = ref(this.database);
+
     get(child(dbRef, `users/${cpfUser}`)).then((snapshot) => {
       if (snapshot.exists()) {
         this.dataUserInfo = snapshot.val()
-        // console.log(snapshot.val());
       } else {
         console.log("No data available");
       }
@@ -79,26 +79,23 @@ export class UsersService {
         // const errorCode = error.code;
         // const errorMessage = error.message;
       });
-
-    console.log("response", response);
+      console.log(response);
+      
     return response
   }
 
-  public createAccount(email, password) {
+  public async createAccount(email, password) {
     const auth = getAuth();
 
-    createUserWithEmailAndPassword(auth, email, password)
+    const response = await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("userCredential", userCredential);
         const user = userCredential.user;
-        console.log(user);
+        return userCredential
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
+        return error
       });
+    return response;
   }
 
 

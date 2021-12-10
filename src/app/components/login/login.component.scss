@@ -1,6 +1,8 @@
+@import '../../../theme/variables.scss';
+
 .principal{
     ::ng-deep{
-        background-color: gray;
+        background-color: $main-white;
         height: 100%;
     }
 }
@@ -40,23 +42,23 @@ img{
     width: 100%;
     border-radius: 15px;
     ::ng-deep{
-        background-color:#f09841;
+        background-color: $main-orange;
     }
 
 }
 
 .input-login{
-    color: white;
-    border: 1px solid white;
+    color: $main-black;
+    border: 1px solid $main-orange;
     border-radius: 10px;
     padding-left: 10px !important;
     &:hover{
-        border-color: orange;
+        border-color: $main-orange;
     }
 }
+
 .space-input{
     margin-bottom: 15px;
-    
 }
 
 .items-login{
@@ -75,15 +77,29 @@ img{
 
 .sexo{
     margin-bottom: 15px;
-    border: 1px solid white;
+    border: 1px solid $main-orange;
     border-radius: 10px;
+    
+    ::ng-deep.in-item{
+        font-size: 12px!important;
+    }
+    
+    ::ng-deep.item-native{
+        background: $main-white!important;
+        color: $main-black!important;
+    }
+    
+    ::ng-deep.item-inner{
+        border-style: none!important;
+    }
 }
 
+
 .invalid{
-    border-color: darkred;
+    border-color: $red-orange!important;
 }
 
 .msg-invalid{
-    color: darkred;
+    color: $red-orange;;
     text-align: initial;
 }

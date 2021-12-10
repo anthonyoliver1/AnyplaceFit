@@ -1,17 +1,20 @@
+@import "../../../theme/variables.scss";
+
 .card-position{
-  --background: gray;
+  --background: $light-red;
+  background-color:  #212529;
 }
 
 .cards{
   width: 100%;
   margin: 5%;
   border-radius: 2%;
-  background-color: #f09841;
-  color: black;
+  background-color: $main-orange;
+  color: $main-black;
 }
 
 .name{
-  color: black;
+  color: $main-black;
   text-align: center;
   font-weight: bolder;
   font-size: 22px;
@@ -23,7 +26,7 @@ img{
 }
 
 .infos-card{
-  color: black;
+  color: $main-black;
   display: flex;
   align-items: center;
 
@@ -33,7 +36,7 @@ img{
   
   .infos-works{
     font-weight: bold;
-    color: black;
+    color: $main-black;
     padding-left: 8px;
     font-size: 16px;
   }

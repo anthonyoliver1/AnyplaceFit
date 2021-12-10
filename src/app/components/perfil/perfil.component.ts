@@ -34,7 +34,7 @@ export class PerfilComponent implements OnInit {
 
   async toast(msg) {
     const toast = await this.toastController.create({
-      color: 'dark', // dark fica branco e light fica preto
+      color: 'dark',
       duration: 2000,
       message: msg,
     });

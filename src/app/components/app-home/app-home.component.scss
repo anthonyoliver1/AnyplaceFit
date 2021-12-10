@@ -1,12 +1,12 @@
 @import "../../../global.scss";
 
 ::ng-deep.principal{
-    background-color: gray;
+    background-color: $main-white;
     height: 100%;
 }
 
 .search{
-    background-color: #4e4d4d;
+    background-color: $main-orange;
 }
 
 .none-found{
